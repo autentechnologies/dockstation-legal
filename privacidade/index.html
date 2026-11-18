@@ -13,18 +13,6 @@
     --muted: #5b6466;
     --border: #e1e6e5;
     --brand: #0f8f87;
-    --accent: #87e44b;
-    --carbon: #15191a;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #101314;
-      --surface: #171c1d;
-      --text: #e8eceb;
-      --muted: #9aa5a6;
-      --border: #263033;
-      --brand: #3cc2b9;
-    }
   }
   * { box-sizing: border-box; }
   html { -webkit-text-size-adjust: 100%; }
@@ -34,36 +22,32 @@
     color: var(--text);
     font: 16px/1.65 system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   }
-  header {
-    background: var(--carbon);
-    color: #fff;
-    border-bottom: 4px solid var(--accent);
-  }
+  header { background: var(--surface); border-bottom: 4px solid var(--brand); }
   .wrap { max-width: 820px; margin: 0 auto; padding: 0 20px; }
   header .wrap { padding-top: 36px; padding-bottom: 32px; }
-  .brand { font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
+  .brand { font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--brand); font-weight: 600; }
   h1 { margin: 8px 0 6px; font-size: clamp(26px, 5vw, 36px); line-height: 1.2; }
-  .updated { color: #b9c3c4; font-size: 14px; margin: 0; }
+  .updated { color: var(--muted); font-size: 14px; margin: 0; }
   main .wrap { padding-top: 32px; padding-bottom: 48px; }
-  h2 { font-size: 20px; margin: 40px 0 10px; color: var(--brand); }
-  h2 span { color: var(--muted); font-weight: 500; margin-right: 6px; }
-  p, li { color: var(--text); }
+  nav.toc { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 14px 20px; margin: 24px 0; }
+  nav.toc strong { display: block; margin-bottom: 6px; }
+  nav.toc ol { margin: 0; padding-left: 20px; columns: 2; column-gap: 32px; }
+  nav.toc li { margin: 2px 0; break-inside: avoid; }
+  @media (max-width: 600px) { nav.toc ol { columns: 1; } }
+  h2 { font-size: 20px; margin: 40px 0 10px; color: var(--brand); scroll-margin-top: 16px; }
+  h3 { font-size: 16px; margin: 20px 0 6px; }
   ul { padding-left: 22px; }
   li { margin: 4px 0; }
   a { color: var(--brand); }
-  .card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-left: 4px solid var(--brand);
-    border-radius: 8px;
-    padding: 16px 20px;
-    margin: 20px 0;
-  }
+  .card { background: var(--surface); border: 1px solid var(--border); border-left: 4px solid var(--brand); border-radius: 8px; padding: 16px 20px; margin: 20px 0; }
   .card p { margin: 4px 0; }
   .table { width: 100%; overflow-x: auto; margin: 12px 0; }
-  table { width: 100%; border-collapse: collapse; font-size: 15px; min-width: 520px; }
+  table { width: 100%; border-collapse: collapse; font-size: 15px; min-width: 560px; }
   th, td { text-align: left; vertical-align: top; padding: 10px 12px; border-bottom: 1px solid var(--border); }
   th { background: var(--surface); font-weight: 600; }
+  dl { margin: 12px 0; }
+  dt { font-weight: 600; margin-top: 10px; }
+  dd { margin: 2px 0 0 0; color: var(--muted); }
   footer { border-top: 1px solid var(--border); color: var(--muted); font-size: 14px; }
   footer .wrap { padding-top: 20px; padding-bottom: 32px; }
 </style>
@@ -79,83 +63,159 @@
 
 <main>
   <div class="wrap">
-    <p>Esta política explica como os dados pessoais são tratados na plataforma Dockstation, de titularidade da Auten Technologies Consultoria em TI Ltda. (“Auten”), em conformidade com a Lei nº 13.709/2018 — Lei Geral de Proteção de Dados Pessoais (LGPD).</p>
+    <p>Esta Política explica, de forma objetiva, como a <strong>Auten Technologies Consultoria em TI Ltda.</strong>, inscrita no CNPJ nº [CNPJ], com sede na Rua Pais Leme, 215, Pinheiros, São Paulo/SP (“Auten”), trata dados pessoais na plataforma <strong>Dockstation</strong>, em conformidade com a Lei nº 13.709/2018 — Lei Geral de Proteção de Dados Pessoais (LGPD).</p>
 
     <div class="card">
       <p><strong>Encarregado pelo Tratamento de Dados Pessoais:</strong> Ricardo Delgado</p>
       <p><strong>Canal de privacidade:</strong> <a href="mailto:privacidade@auten.digital">privacidade@auten.digital</a></p>
     </div>
 
-    <h2><span>1.</span>Quem trata os seus dados</h2>
-    <p>O Dockstation é contratado por organizações para gerir seus documentos. Nessa relação:</p>
+    <nav class="toc" aria-label="Sumário">
+      <strong>Nesta política</strong>
+      <ol>
+        <li><a href="#conceitos">Conceitos</a></li>
+        <li><a href="#papeis">Quem trata os seus dados</a></li>
+        <li><a href="#coleta">Como os dados são coletados</a></li>
+        <li><a href="#dados">Quais dados tratamos e por quê</a></li>
+        <li><a href="#bases">Bases legais</a></li>
+        <li><a href="#compartilhamento">Compartilhamento</a></li>
+        <li><a href="#local">Onde os dados ficam</a></li>
+        <li><a href="#retencao">Por quanto tempo</a></li>
+        <li><a href="#seguranca">Segurança</a></li>
+        <li><a href="#direitos">Seus direitos</a></li>
+        <li><a href="#cookies">Cookies</a></li>
+        <li><a href="#comunicacoes">Comunicações oficiais</a></li>
+        <li><a href="#atualizacoes">Atualizações</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ol>
+    </nav>
+
+    <h2 id="conceitos">1. Conceitos</h2>
+    <dl>
+      <dt>Dado pessoal</dt><dd>Informação que identifica ou pode identificar uma pessoa, como nome, e-mail, CPF ou telefone.</dd>
+      <dt>Titular</dt><dd>A pessoa a quem os dados pessoais se referem.</dd>
+      <dt>Controlador</dt><dd>Quem decide sobre o tratamento dos dados pessoais.</dd>
+      <dt>Operador</dt><dd>Quem trata os dados pessoais em nome do controlador, seguindo suas instruções.</dd>
+      <dt>Tratamento</dt><dd>Qualquer operação com dados pessoais, como coleta, acesso, armazenamento, uso e eliminação.</dd>
+      <dt>Contratante</dt><dd>A organização que contrata o Dockstation e libera o acesso aos seus usuários.</dd>
+    </dl>
+
+    <h2 id="papeis">2. Quem trata os seus dados</h2>
     <ul>
-      <li><strong>A organização contratante é a controladora</strong> dos documentos inseridos na plataforma e dos dados de seus usuários, e decide para que esses dados são usados.</li>
-      <li><strong>A Auten é a operadora</strong>, tratando esses dados em nome da contratante e conforme suas instruções, exclusivamente para prestar o serviço.</li>
-      <li><strong>A Auten é controladora</strong> apenas dos dados de contato usados no relacionamento comercial e no atendimento de suporte.</li>
+      <li><strong>A contratante é a controladora</strong> dos documentos inseridos no Dockstation e dos dados de seus usuários, e define as finalidades desse tratamento.</li>
+      <li><strong>A Auten é a operadora</strong> desses dados: trata-os em nome da contratante, conforme suas instruções e exclusivamente para prestar o serviço.</li>
+      <li><strong>A Auten é a controladora</strong> apenas dos dados de contato usados no relacionamento comercial, no atendimento de suporte e no canal de privacidade.</li>
     </ul>
 
-    <h2><span>2.</span>Quais dados tratamos</h2>
+    <h2 id="coleta">3. Como os dados são coletados</h2>
+    <ul>
+      <li><strong>Pela contratante</strong>, ao cadastrar usuários e liberar acessos.</li>
+      <li><strong>Pelo próprio usuário</strong>, ao acessar a plataforma, inserir documentos ou ajustar preferências.</li>
+      <li><strong>Por sistemas da contratante</strong> integrados ao Dockstation, que enviam documentos e metadados.</li>
+      <li><strong>Automaticamente</strong>, por registros de uso e segurança gerados durante o acesso.</li>
+      <li><strong>Pelos canais de atendimento</strong>, quando você entra em contato com o suporte ou com o canal de privacidade.</li>
+    </ul>
+
+    <h2 id="dados">4. Quais dados tratamos e por quê</h2>
     <div class="table">
       <table>
-        <thead><tr><th>Categoria</th><th>Exemplos</th><th>Finalidade</th></tr></thead>
+        <thead><tr><th>Titular</th><th>Dados pessoais</th><th>Finalidades</th></tr></thead>
         <tbody>
-          <tr><td>Dados de conta</td><td>Nome, e-mail corporativo, identificador de usuário</td><td>Permitir o acesso seguro à plataforma</td></tr>
-          <tr><td>Dados de acesso e perfil</td><td>Papéis, equipes e workspaces</td><td>Controlar o que cada usuário pode ver e fazer</td></tr>
-          <tr><td>Documentos e metadados</td><td>Dados contidos nos documentos da contratante</td><td>Armazenar, classificar, pesquisar e exportar documentos</td></tr>
-          <tr><td>Registros de uso</td><td>Data e hora de ações, eventos de integração</td><td>Segurança, auditoria e rastreabilidade</td></tr>
-          <tr><td>Preferências</td><td>Tema, idioma e workspace ativo</td><td>Manter a experiência escolhida pelo usuário</td></tr>
-          <tr><td>Dados de suporte</td><td>Nome, e-mail, telefone e conteúdo do chamado</td><td>Registrar e resolver solicitações</td></tr>
+          <tr>
+            <td>Usuários da plataforma</td>
+            <td>Nome, e-mail corporativo, identificador de usuário, papéis, equipes e workspaces; registros de acesso e de ações; preferências de tema e idioma</td>
+            <td>Autenticar e controlar o acesso; registrar ações para segurança e auditoria; manter a experiência escolhida</td>
+          </tr>
+          <tr>
+            <td>Pessoas citadas nos documentos da contratante</td>
+            <td>Dados contidos nos documentos e metadados, conforme o acervo da contratante</td>
+            <td>Armazenar, classificar, pesquisar e exportar documentos, segundo as instruções da contratante</td>
+          </tr>
+          <tr>
+            <td>Contatos de clientes e fornecedores</td>
+            <td>Nome, e-mail, telefone e cargo</td>
+            <td>Relacionamento comercial, execução de contratos e comunicações sobre o serviço</td>
+          </tr>
+          <tr>
+            <td>Solicitantes de suporte e de privacidade</td>
+            <td>Nome, e-mail, telefone e conteúdo da solicitação</td>
+            <td>Registrar, responder e resolver solicitações; atender direitos dos titulares</td>
+          </tr>
         </tbody>
       </table>
     </div>
-    <p>O Dockstation não utiliza dados pessoais para publicidade nem os comercializa.</p>
+    <p>A Auten não utiliza dados pessoais para publicidade, não os comercializa e não toma decisões automatizadas que afetem os titulares com base neles.</p>
 
-    <h2><span>3.</span>Bases legais</h2>
+    <h2 id="bases">5. Bases legais</h2>
     <ul>
-      <li><strong>Execução de contrato</strong> (art. 7º, V): contas, acessos e suporte.</li>
-      <li><strong>Legítimo interesse</strong> (art. 7º, IX): segurança, auditoria e preferências de interface.</li>
-      <li><strong>Cumprimento de obrigação legal</strong> (art. 7º, II): guarda de registros quando exigida por lei.</li>
-      <li>Para os documentos da contratante, a base legal é definida pela própria contratante, como controladora.</li>
+      <li><strong>Execução de contrato</strong> (art. 7º, V): contas, acessos, prestação do serviço e suporte.</li>
+      <li><strong>Cumprimento de obrigação legal ou regulatória</strong> (art. 7º, II): guarda de registros quando exigida por lei.</li>
+      <li><strong>Exercício regular de direitos</strong> (art. 7º, VI): defesa em processos judiciais, administrativos ou arbitrais.</li>
+      <li><strong>Legítimo interesse</strong> (art. 7º, IX): segurança da plataforma, prevenção a fraudes, auditoria e preferências de interface, sempre respeitando seus direitos.</li>
+      <li>Para os documentos da contratante, a base legal é definida por ela, como controladora.</li>
     </ul>
 
-    <h2><span>4.</span>Compartilhamento</h2>
-    <p>Os dados são compartilhados apenas com provedores de infraestrutura em nuvem necessários à hospedagem e à operação da plataforma, vinculados por contrato com obrigações de proteção de dados, e com autoridades, quando houver obrigação legal.</p>
+    <h2 id="compartilhamento">6. Compartilhamento</h2>
+    <p>Os dados pessoais são acessados apenas por pessoas autorizadas da Auten, na medida do necessário, e podem ser compartilhados com:</p>
+    <ul>
+      <li><strong>Provedores de infraestrutura em nuvem</strong>, para hospedagem e operação da plataforma, vinculados por contrato com obrigações de proteção de dados;</li>
+      <li><strong>Prestadores de serviço</strong> que apoiam a operação e o suporte, vinculados a termo de confidencialidade e proteção de dados;</li>
+      <li><strong>Autoridades públicas</strong>, mediante obrigação legal ou ordem judicial.</li>
+    </ul>
+    <p>A Auten não vende nem cede dados pessoais a terceiros.</p>
 
-    <h2><span>5.</span>Onde os dados ficam</h2>
-    <p>Os documentos, metadados e dados de usuários são armazenados em data center localizado no Brasil. Caso venha a ocorrer transferência internacional, ela observará os artigos 33 a 36 da LGPD e a regulamentação da ANPD.</p>
+    <h2 id="local">7. Onde os dados ficam</h2>
+    <p>Os documentos, metadados e dados de usuários do Dockstation são armazenados em data center localizado no Brasil. Caso venha a ocorrer transferência internacional, ela observará os artigos 33 a 36 da LGPD e a regulamentação da ANPD, com comunicação prévia à contratante.</p>
 
-    <h2><span>6.</span>Por quanto tempo</h2>
+    <h2 id="retencao">8. Por quanto tempo</h2>
     <ul>
       <li><strong>Documentos e metadados:</strong> durante a vigência do contrato, conforme as regras de retenção da contratante; ao término, são devolvidos ou eliminados.</li>
       <li><strong>Contas de usuário:</strong> enquanto o acesso estiver ativo.</li>
-      <li><strong>Registros de segurança:</strong> pelo prazo necessário à segurança e ao cumprimento de obrigações legais.</li>
+      <li><strong>Registros de segurança e auditoria:</strong> pelo prazo necessário à segurança e ao cumprimento de obrigações legais.</li>
+      <li><strong>Contatos comerciais e de suporte:</strong> enquanto durar o relacionamento e pelos prazos legais aplicáveis.</li>
+    </ul>
+    <p>Encerrada a finalidade, os dados são eliminados ou anonimizados, salvo quando a lei exigir sua conservação.</p>
+
+    <h2 id="seguranca">9. Segurança</h2>
+    <p>A Auten adota medidas técnicas e administrativas para proteger os dados pessoais, incluindo:</p>
+    <ul>
+      <li>autenticação segura e controle de acesso por papéis, com menor privilégio;</li>
+      <li>isolamento dos dados de cada contratante;</li>
+      <li>comunicação criptografada (HTTPS/TLS);</li>
+      <li>registros de auditoria de acesso e alteração;</li>
+      <li>termo de confidencialidade para colaboradores e prestadores;</li>
+      <li>procedimento de resposta a incidentes, com comunicação à contratante e apoio nas comunicações à ANPD e aos titulares.</li>
     </ul>
 
-    <h2><span>7.</span>Segurança</h2>
-    <p>Adotamos medidas técnicas e administrativas para proteger os dados, entre elas autenticação segura, controle de acesso por papéis, isolamento de dados por organização, comunicação criptografada (HTTPS/TLS), registros de auditoria e procedimento de resposta a incidentes.</p>
-
-    <h2><span>8.</span>Seus direitos</h2>
+    <h2 id="direitos">10. Seus direitos</h2>
     <p>Nos termos do art. 18 da LGPD, você pode solicitar:</p>
     <ul>
       <li>confirmação da existência de tratamento e acesso aos dados;</li>
       <li>correção de dados incompletos, inexatos ou desatualizados;</li>
-      <li>anonimização, bloqueio ou eliminação de dados desnecessários ou excessivos;</li>
+      <li>anonimização, bloqueio ou eliminação de dados desnecessários, excessivos ou tratados em desconformidade com a LGPD;</li>
       <li>portabilidade dos dados;</li>
-      <li>informação sobre compartilhamento;</li>
-      <li>revogação do consentimento, quando aplicável.</li>
+      <li>eliminação de dados tratados com base no consentimento;</li>
+      <li>informação sobre as entidades com as quais os dados foram compartilhados;</li>
+      <li>informação sobre a possibilidade de não fornecer consentimento e suas consequências;</li>
+      <li>revogação do consentimento;</li>
+      <li>revisão de decisões tomadas unicamente com base em tratamento automatizado.</li>
     </ul>
-    <p>Quando os dados forem da organização contratante, encaminharemos a solicitação a ela, como controladora, e apoiaremos o atendimento. Envie seu pedido para <a href="mailto:privacidade@auten.digital">privacidade@auten.digital</a>.</p>
+    <p><strong>Como exercer:</strong> envie sua solicitação para <a href="mailto:privacidade@auten.digital">privacidade@auten.digital</a>. Poderemos pedir informações para confirmar sua identidade. Quando os dados pertencerem à contratante, encaminharemos o pedido a ela, como controladora, e apoiaremos o atendimento. Você também pode apresentar reclamação à Autoridade Nacional de Proteção de Dados (ANPD).</p>
 
-    <h2><span>9.</span>Cookies</h2>
-    <p>O Dockstation utiliza apenas armazenamento essencial e de preferências no navegador. Os detalhes estão na <a href="../cookies/">Política de Cookies</a>.</p>
+    <h2 id="cookies">11. Cookies</h2>
+    <p>O Dockstation utiliza apenas armazenamento essencial e de preferências no navegador, sem cookies de publicidade ou de análise. Os detalhes estão na <a href="../cookies/">Política de Cookies</a>.</p>
 
-    <h2><span>10.</span>Atualizações</h2>
-    <p>Esta política pode ser atualizada para refletir mudanças no produto ou na legislação. A data no topo indica a versão vigente.</p>
+    <h2 id="comunicacoes">12. Comunicações oficiais</h2>
+    <p>A Auten envia comunicações apenas pelo domínio <strong>@auten.digital</strong> e nunca solicita senhas por e-mail, telefone ou mensagem. Em caso de dúvida sobre uma comunicação recebida, entre em contato pelo canal de privacidade.</p>
 
-    <h2><span>11.</span>Contato</h2>
+    <h2 id="atualizacoes">13. Atualizações</h2>
+    <p>Esta Política pode ser atualizada para refletir mudanças no Dockstation ou na legislação. A data no topo indica a versão vigente.</p>
+
+    <h2 id="contato">14. Contato</h2>
     <p><strong>Encarregado:</strong> Ricardo Delgado<br>
     <strong>E-mail:</strong> <a href="mailto:privacidade@auten.digital">privacidade@auten.digital</a><br>
-    <strong>Endereço:</strong> São Paulo, SP — Brasil</p>
+    <strong>Endereço:</strong> Rua Pais Leme, 215 — Pinheiros, São Paulo/SP — Brasil</p>
+    <p>Este canal é exclusivo para assuntos de privacidade e proteção de dados. Para suporte técnico, utilize <a href="mailto:suporte@auten.digital">suporte@auten.digital</a>.</p>
   </div>
 </main>
 
